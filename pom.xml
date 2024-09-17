@@ -64,7 +64,7 @@
         <lib.checkstyle.version>10.18.1</lib.checkstyle.version>
         <lib.datanucleus-api-jdo.version>6.0.3</lib.datanucleus-api-jdo.version>
         <lib.datanucleus-core.version>6.0.8</lib.datanucleus-core.version>
-        <lib.datanucleus-javax-jdo.version>3.2.0-release</lib.datanucleus-javax-jdo.version>
+        <lib.datanucleus-javax-jdo.version>3.2.1</lib.datanucleus-javax-jdo.version>
         <lib.datanucleus-rdbms.version>6.0.8</lib.datanucleus-rdbms.version>
         <lib.junit-jupiter.version>5.11.0</lib.junit-jupiter.version>
         <lib.postgresql.version>42.7.4</lib.postgresql.version>
