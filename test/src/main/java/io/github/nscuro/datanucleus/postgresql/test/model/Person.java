@@ -40,7 +40,7 @@ public class Person {
             @Extension(vendorName = "datanucleus", key = "insert-function", value = "(?::JSONB)"),
             @Extension(vendorName = "datanucleus", key = "update-function", value = "(?::JSONB)")
     })
-    private String propertiesJson;
+    private String properties;
 
     public long getId() {
         return id;
@@ -58,12 +58,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getPropertiesJson() {
-        return propertiesJson;
+    public String getProperties() {
+        return properties;
     }
 
-    public void setPropertiesJson(final String propertiesJson) {
-        this.propertiesJson = propertiesJson;
+    public void setProperties(final String properties) {
+        this.properties = properties;
     }
 
 }

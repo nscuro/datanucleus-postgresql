@@ -78,7 +78,7 @@ class JsonbContainsMethodTest {
     @Test
     void shouldMatchWithStringParameter() {
         final var person = new Person();
-        person.setPropertiesJson(/* language=JSON */ """
+        person.setProperties(/* language=JSON */ """
                 [
                   {
                     "foo": "bar",
@@ -89,7 +89,7 @@ class JsonbContainsMethodTest {
         pm.makePersistent(person);
 
         final Query<Person> query = pm.newQuery(Person.class);
-        query.setFilter("addressesJson.jsonbContains(:foo)");
+        query.setFilter("properties.jsonbContains(:foo)");
         query.setParameters("[{\"baz\":111}]");
 
         final Person queryResult = query.executeUnique();
@@ -99,7 +99,7 @@ class JsonbContainsMethodTest {
     @Test
     void shouldMatchWithStringLiteral() {
         final var person = new Person();
-        person.setPropertiesJson(/* language=JSON */ """
+        person.setProperties(/* language=JSON */ """
                 [
                   {
                     "foo": "bar",
@@ -110,7 +110,7 @@ class JsonbContainsMethodTest {
         pm.makePersistent(person);
 
         final Query<Person> query = pm.newQuery(Person.class);
-        query.setFilter("addressesJson.jsonbContains('[{\"baz\":111}]')");
+        query.setFilter("properties.jsonbContains('[{\"baz\":111}]')");
 
         final Person queryResult = query.executeUnique();
         assertThat(queryResult).isNotNull();
@@ -119,7 +119,7 @@ class JsonbContainsMethodTest {
     @Test
     void shouldThrowForNonJsonStringArgument() {
         final var person = new Person();
-        person.setPropertiesJson(/* language=JSON */ """
+        person.setProperties(/* language=JSON */ """
                 [
                   {
                     "foo": "bar",
@@ -130,7 +130,7 @@ class JsonbContainsMethodTest {
         pm.makePersistent(person);
 
         final Query<Person> query = pm.newQuery(Person.class);
-        query.setFilter("addressesJson.jsonbContains('not-json')");
+        query.setFilter("properties.jsonbContains('not-json')");
         query.setParameters(123);
 
         assertThatExceptionOfType(JDOException.class)
@@ -140,14 +140,14 @@ class JsonbContainsMethodTest {
                 .withMessage("""
                         ERROR: invalid input syntax for type json
                           Detail: Token "not" is invalid.
-                          Position: 189
+                          Position: 172
                           Where: JSON data, line 1: not...""");
     }
 
     @Test
     void shouldThrowForNonStringArgument() {
         final var person = new Person();
-        person.setPropertiesJson(/* language=JSON */ """
+        person.setProperties(/* language=JSON */ """
                 [
                   {
                     "foo": "bar",
@@ -158,7 +158,7 @@ class JsonbContainsMethodTest {
         pm.makePersistent(person);
 
         final Query<Person> query = pm.newQuery(Person.class);
-        query.setFilter("addressesJson.jsonbContains(:foo)");
+        query.setFilter("properties.jsonbContains(:foo)");
         query.setParameters(123);
 
         assertThatExceptionOfType(JDOException.class)
