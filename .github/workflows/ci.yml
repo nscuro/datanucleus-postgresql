@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+permissions: { }
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        java-version:
+        - 17
+        - 21
+    permissions:
+      contents: read
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+    - name: Set up Java
+      uses: actions/setup-java@2dfa2011c5b2a0f1489bf9e433881c92c1631f88 # v4
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: "temurin"
+        cache: "maven"
+    - name: Test
+      run: mvn -B --no-transfer-progress clean install

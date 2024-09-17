@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<plugin id="io.github.nscuro.datanucleus.postgresql" name="DataNucleus PostgreSQL" provider-name="nscuro">
+    <extension point="org.datanucleus.store.rdbms.sql_method">
+        <sql-method class="java.lang.String" method="jsonbContains" evaluator="io.github.nscuro.datanucleus.postgresql.method.JsonbContainsMethod"/>
+    </extension>
+</plugin>
