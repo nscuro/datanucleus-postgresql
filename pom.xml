@@ -7,6 +7,15 @@
     <version>0.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>datanucleus-postgresql</name>
+    <description>DataNucleus plugin for PostgreSQL-specific functionality</description>
+    <url>https://github.com/nscuro/datanucleus-postgresql</url>
+
+    <modules>
+        <module>plugin</module>
+        <module>test</module>
+    </modules>
+
     <developers>
         <developer>
             <name>Niklas Düster</name>
@@ -14,10 +23,6 @@
             <url>https://github.com/nscuro</url>
         </developer>
     </developers>
-    <modules>
-        <module>plugin</module>
-        <module>test</module>
-    </modules>
 
     <licenses>
         <license>
