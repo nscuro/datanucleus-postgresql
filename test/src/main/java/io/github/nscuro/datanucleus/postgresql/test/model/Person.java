@@ -1,5 +1,5 @@
 /*
- * This file is part of versatile.
+ * This file is part of datanucleus-postgresql.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import java.util.UUID;
 
 @PersistenceCapable
 public class Person {
@@ -41,6 +42,9 @@ public class Person {
             @Extension(vendorName = "datanucleus", key = "update-function", value = "(?::JSONB)")
     })
     private String properties;
+
+    @Persistent(customValueStrategy = "uuid-v7")
+    private UUID uuid;
 
     public long getId() {
         return id;
@@ -64,6 +68,14 @@ public class Person {
 
     public void setProperties(final String properties) {
         this.properties = properties;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(final UUID uuid) {
+        this.uuid = uuid;
     }
 
 }
