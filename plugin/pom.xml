@@ -24,6 +24,11 @@
             <artifactId>datanucleus-rdbms</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

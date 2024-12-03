@@ -3,4 +3,8 @@
     <extension point="org.datanucleus.store.rdbms.sql_method">
         <sql-method class="java.lang.String" method="jsonbContains" evaluator="io.github.nscuro.datanucleus.postgresql.method.JsonbContainsMethod"/>
     </extension>
+
+    <extension point="org.datanucleus.store_valuegenerator">
+        <valuegenerator name="uuid-v7" class-name="io.github.nscuro.datanucleus.postgresql.valuegenerator.UUIDv7Generator" datastore="rdbms"/>
+    </extension>
 </plugin>

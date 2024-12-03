@@ -16,19 +16,29 @@
  * SPDX-License-Identifier: Apache-2.0
  * Copyright (c) Niklas Düster. All Rights Reserved.
  */
-package io.github.nscuro.datanucleus.postgresql.method;
+package io.github.nscuro.datanucleus.postgresql.valuegenerator;
 
-import org.datanucleus.store.query.expression.Expression.DyadicOperator;
+import io.github.nscuro.datanucleus.postgresql.AbstractTest;
+import io.github.nscuro.datanucleus.postgresql.test.model.Person;
+import org.junit.jupiter.api.Test;
 
-/**
- * @see <a href="https://www.postgresql.org/docs/current/functions-json.html">JSON Functions and Operators</a>
- */
-final class Operators {
+import java.util.HashSet;
+import java.util.UUID;
 
-    // '{"a":1, "b":2}'::jsonb @> '{"b":2}'::jsonb
-    static final DyadicOperator JSONB_CONTAINS_JSONB = new DyadicOperator("@>", 1, false);
+import static org.assertj.core.api.Assertions.assertThat;
 
-    private Operators() {
+class UUIDv7GeneratorTest extends AbstractTest {
+
+    @Test
+    void test() {
+        final var uuidsSeen = new HashSet<UUID>();
+        for (int i = 0; i < 10; i++) {
+            final var person = new Person();
+            person.setName("person-" + i);
+            pm.makePersistent(person);
+
+            assertThat(uuidsSeen.add(person.getUuid())).isTrue();
+        }
     }
 
 }
